@@ -1,3 +1,9 @@
+:root {
+    --pixel-size: 32px;
+    --scale-factor: 8;
+    --sprite-sheet-length: 5;
+}
+
 body, html{
     margin:0;
     padding:0;
@@ -34,8 +40,8 @@ header {
 }
 
 #candle {
-    width: calc(32px * 8);
-    height: calc(32px * 8);
+    width: calc(var(--pixel-size) * var(--scale-factor));
+    height: calc(var(--pixel-size) * var(--scale-factor));
     overflow: hidden;
     position: relative;
     margin-right: 5em;
@@ -43,7 +49,7 @@ header {
 
 .spritesheet {
     image-rendering: pixelated;
-    width: calc(32px * 5 * 8);
+    width: calc(var(--pixel-size) * var(--scale-factor) * var(--sprite-sheet-length));
     position: absolute;
 }
 
