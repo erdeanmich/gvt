@@ -48,6 +48,7 @@ header {
 }
 
 .spritesheet {
+    image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
     width: calc(var(--pixel-size) * var(--scale-factor) * var(--sprite-sheet-length));
     position: absolute;
