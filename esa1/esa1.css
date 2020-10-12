@@ -11,11 +11,6 @@ main {
 
 #instructions {
     margin-top: 5em;
-}
-
-#instructions ul {
-    list-style: none;
-    width: 100%;
     text-align: center;
 }
 
@@ -39,8 +34,8 @@ header {
 }
 
 #candle {
-    width: calc(32px * 6);
-    height: calc(32px * 6);
+    width: calc(32px * 8);
+    height: calc(32px * 8);
     overflow: hidden;
     position: relative;
     margin-right: 5em;
@@ -48,7 +43,7 @@ header {
 
 .spritesheet {
     image-rendering: pixelated;
-    width: calc(192px * 6);
+    width: calc(32px * 5 * 8);
     position: absolute;
 }
 
@@ -58,8 +53,13 @@ header {
 
 #images {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+}
+
+footer {
+    margin-top: 5em;
+    text-align: center;
 }
 
 main {
