@@ -11,7 +11,12 @@ main {
 
 #instructions {
     margin-top: 5em;
+}
+
+#instructions ul {
     list-style: none;
+    width: 100%;
+    text-align: center;
 }
 
 header {
@@ -29,9 +34,44 @@ header {
 
 #orange {
     width: 25%;
+    margin-left: 5em;
+
+}
+
+#candle {
+    width: calc(32px * 6);
+    height: calc(32px * 6);
+    overflow: hidden;
+    position: relative;
+    margin-right: 5em;
+}
+
+.spritesheet {
+    image-rendering: pixelated;
+    width: calc(192px * 6);
+    position: absolute;
+}
+
+.spritesheet:hover {
+    animation: animateCandle 0.5s steps(5) infinite;
+}
+
+#images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 main {
     margin: auto;
     width: 80%;
+}
+
+@keyframes animateCandle {
+    from {
+        transform: translate3d(0px,0,0)
+    }
+    to {
+        transform: translate3d(-100%,0,0)
+    }
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
         <link rel="stylesheet" href="esa1.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <script src="esa1.js"></script>
@@ -10,13 +12,22 @@
             Einsendeaufgabe 1
         </header>
         <main>
-            <img id="orange" src="images/orange.png"/>
+            <div id="images">
+                <img id="orange" src="images/orange.png" alt="Orange"/>
+                <div id="candle">
+                    <img class="spritesheet" src="images/candle.png" alt="Candle"/>
+                </div>
+            </div>
             <div id="instructions">
                 <ul>
                     <li><strong>"l"</strong> - Rotate the orange left</li>
                     <li><strong>"r"</strong> - Rotate the orange right</li>
+                    <li><strong>"a"</strong> - Rotate the orange continuously / Stop to rotate</li>
                 </ul>
             </div>
+            <footer>
+                <a href="https://pnghunter.com/png/orange-orange-2/">Orange Picture</a>
+            </footer>
         </main>
     </body>
 </html>
