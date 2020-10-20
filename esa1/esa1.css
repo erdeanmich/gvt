@@ -39,19 +39,19 @@ header {
 
 }
 
+.spritesheet {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    width: calc(var(--pixel-size) * var(--scale-factor) * var(--sprite-sheet-length));
+    position: absolute;
+}
+
 #candle {
     width: calc(var(--pixel-size) * var(--scale-factor));
     height: calc(var(--pixel-size) * var(--scale-factor));
     overflow: hidden;
     position: relative;
     margin-right: 5em;
-}
-
-.spritesheet {
-    image-rendering: -moz-crisp-edges;
-    image-rendering: pixelated;
-    width: calc(var(--pixel-size) * var(--scale-factor) * var(--sprite-sheet-length));
-    position: absolute;
 }
 
 .spritesheet:hover {
