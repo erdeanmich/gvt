@@ -1,0 +1,33 @@
+body, html{
+    margin:0;
+    padding:0;
+}
+
+main {
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: lighter;
+    color: grey;
+    margin: auto;
+    width: 80%;
+}
+
+header {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 5em;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    -webkit-box-shadow: 0 3px 16px 0 lightgray;
+    -moz-box-shadow: 0 3px 16px 0 lightgray;
+    box-shadow: 0 3px 16px 0 lightgray;
+}
+
+#canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 80%;
+    height: 600px;
+}
