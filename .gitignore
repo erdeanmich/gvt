@@ -120,3 +120,8 @@ modules.xml
 .idea/sonarlint
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,webstorm+all
+
+node_modules
+build
+npm-debug.log
+.env
