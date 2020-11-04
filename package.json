@@ -1,0 +1,28 @@
+{
+  "name": "gvt",
+  "version": "1.0.0",
+  "description": "gvt exercises",
+  "scripts": {
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erdeanmich/gvt.git"
+  },
+  "keywords": [
+    "gvt",
+    "webgl",
+    "js"
+  ],
+  "author": "linda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erdeanmich/gvt/issues"
+  },
+  "homepage": "https://github.com/erdeanmich/gvt#readme",
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
