@@ -3,9 +3,8 @@
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
-        <link rel="stylesheet" href="esa4.css"/>
+        <link rel="stylesheet" href="esa4_ext.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-        <script defer src="esa4.js"></script>
         <script defer src="esa4_ext.js"></script>
         <title>Einsendeaufgabe 4</title>
     </head>
@@ -16,23 +15,24 @@
         <main>
             <canvas id="canvas"></canvas>
             <div id="titles">
-                <h4>Used forms</h4>
+                <h4>Used "basic" form</h4>
                 <ul>
                     <li>
-                        <a href="http://www.3d-meier.de/tut3/Seite58.html">
-                            <strong>Torus</strong>
+                        <a href="http://www.3d-meier.de/tut3/Seite57.html">
+                            <strong>Tranguloid Trefoil</strong>
                         </a>
                     </li>
-                    <li>
-                        <a href="http://www.3d-meier.de/tut3/Seite38.html">
-                            <strong>Snail Surface</strong>
-                        </a>
-                    </li>
+                </ul>
+                <h4>Terms for form generation</h4>
+                <ul>
+                    <li>x = 2 cos(3 u)/(2 + sin(v))</li>
+                    <li>y = 2 (cos(u) + 2 cos(2 u))/(2 + cos(v + 2 pi/3))</li>
+                    <li>z = (cos(u) - 2 cos(2 u)) (2 + cos(v)) (2 + cos(v + 2 pi/3))/4</li>
                 </ul>
             </div>
             <hr>
             <div id="link">
-                <a href="esa4_ext.html">Go to extension...<a>
+                <a href="esa4.html">Back to main page...<a>
             </div>
         </main>
     </body>
