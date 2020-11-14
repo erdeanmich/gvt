@@ -12,5 +12,7 @@ module.exports = {
   },
   rules: {
     'no-plusplus': 'off',
+    'no-use-before-define': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
