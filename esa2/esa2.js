@@ -19,7 +19,7 @@ gl.shaderSource(vs, vsSource);
 gl.compileShader(vs);
 
 // Compile a fragment shader
-const fsSouce = 'void main() { gl_FragColor = vec4(1, 1, 1, 1); }';
+let fsSouce = 'void main() { gl_FragColor = vec4(1, 1, 1, 1); }';
 const fs = gl.createShader(gl.FRAGMENT_SHADER);
 gl.shaderSource(fs, fsSouce);
 gl.compileShader(fs);
