@@ -14,5 +14,7 @@ module.exports = {
     'no-plusplus': 'off',
     'no-use-before-define': 'off',
     'no-underscore-dangle': 'off',
+    'no-param-reassign': 'off',
+    'import/extensions': 'off',
   },
 };
