@@ -4,57 +4,48 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <link rel="stylesheet" href="../common/common.css"/>
-        <link rel="stylesheet" href="./esa5.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         <script src="../common/ext/index.js" type="module"></script>
-        <script src="torus.js" type="module"></script>
         <script src="plane.js" type="module"></script>
-        <script src="coneLeft.js" type="module"></script>
+        <script src="torus.js" type="module"></script>
         <script src="sphere.js" type="module"></script>
-        <script src="esa5.js" type="module"></script>
+        <script src="esa6.js" type="module"></script>
 
         <script type="x-shader/x-vertex" id="vertexshader">
-
             attribute vec3 aPosition;
             attribute vec3 aNormal;
-
             uniform mat4 uPMatrix;
             uniform mat4 uMVMatrix;
-
+            uniform vec4 uColor;
+            uniform mat3 uNMatrix;
             varying vec4 vColor;
 
             void main(){
                 gl_Position = uPMatrix * uMVMatrix * vec4(aPosition, 1.0);
-                vColor = vec4(aNormal.x, aNormal.y, aNormal.z, 1.0);
-                vColor = (vColor + 1.0) / 2.0;
+                vec3 tNormal = uNMatrix * aNormal;
+                vColor = vec4(tNormal.z, tNormal.z, tNormal.z, 1.0);
+                vColor = uColor * (vColor + 1.0) / 2.0;
             }
+
         </script>
+
         <script type="x-shader/x-fragment" id="fragmentshader">
             precision mediump float;
             varying vec4 vColor;
 
-
             void main() {
-                gl_FragColor = vColor;
+            gl_FragColor = vColor;
             }
         </script>
 
-        <title>Einsendeaufgabe 5</title>
+        <title>Einsendeaufgabe 6</title>
     </head>
     <body>
         <header>
-            Einsendeaufgabe 5
+            Einsendeaufgabe 6
         </header>
         <main>
             <canvas id="canvas"></canvas>
-            <div id="tesselation">
-                <label>
-                    Sphere tesselation level:
-                    <input id="tesselation-level" type="number" value="0" min="0" max="5">
-                </label>
-                <br>
-                <div><strong>"WASD"</strong> Move camera <br/></div>
-            </div>
         </main>
     </body>
 </html>
