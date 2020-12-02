@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link rel="stylesheet" href="../common/common.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+        <script src="../common/ext/index.js" type="module"></script>
+        <script src="plane.js" type="module"></script>
+        <script src="torus.js" type="module"></script>
+        <script src="coneRight.js" type="module"></script>
+        <script src="coneLeft.js" type="module"></script>
+        <script src="esa7.js" type="module"></script>
+
+        <script type="x-shader/x-vertex" id="vertexshader">
+            attribute vec3 aPosition;
+            attribute vec3 aNormal;
+            uniform mat4 uPMatrix;
+            uniform mat4 uMVMatrix;
+            uniform vec4 uColor;
+            uniform mat3 uNMatrix;
+            varying vec4 vColor;
+
+            void main(){
+                gl_Position = uPMatrix * uMVMatrix * vec4(aPosition, 1.0);
+                vec3 tNormal = uNMatrix * aNormal;
+                vColor = vec4(tNormal.z, tNormal.z, tNormal.z, 1.0);
+                vColor = uColor * (vColor + 1.0) / 2.0;
+            }
+
+        </script>
+
+        <script type="x-shader/x-fragment" id="fragmentshader">
+            precision mediump float;
+            varying vec4 vColor;
+
+            void main() {
+            gl_FragColor = vColor;
+            }
+        </script>
+
+        <title>Einsendeaufgabe 7</title>
+    </head>
+    <body>
+        <header>
+            Einsendeaufgabe 7
+        </header>
+        <main>
+            <canvas id="canvas"></canvas>
+        </main>
+    </body>
+</html>
