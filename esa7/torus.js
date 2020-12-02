@@ -22,8 +22,8 @@ export const torus = ((() => {
     const du = (rangeU.max - rangeU.min) / n;
     const dv = (rangeV.max - rangeV.min) / m;
 
-    const r = 0.3;
-    const R = 0.5;
+    const r = 0.1;
+    const R = 1.6;
     // Counter for entries in index array.
     let iLines = 0;
     let iTris = 0;
@@ -38,7 +38,7 @@ export const torus = ((() => {
 
         // Set vertex positions.
         vertices[iVertex * 3] = x;
-        vertices[iVertex * 3 + 1] = y + 0.8;
+        vertices[iVertex * 3 + 1] = y;
         vertices[iVertex * 3 + 2] = z;
 
         // Calc and set normals.

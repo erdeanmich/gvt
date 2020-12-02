@@ -1,8 +1,7 @@
 import { mat3, mat4 } from '../common/ext/index.js';
-import { plane } from './plane.js';
 import { torus } from './torus.js';
-import { coneLeft } from './coneLeft.js';
-import { coneRight } from './coneRight.js';
+import { cone } from './cone.js';
+import { torusInner } from './torusInner.js';
 
 window.onload = () => {
   app.start();
@@ -23,7 +22,7 @@ const app = ((() => {
 
   const camera = {
     // Initial position of the camera.
-    eye: [0, 1, 4],
+    eye: [0, 1, 1],
     // Point to look at.
     center: [0, 0, 0],
     // Roll and pitch of the camera.
@@ -46,7 +45,7 @@ const app = ((() => {
     yAngle: deltaRotate * 2,
     xAngle: 0,
     // Distance in XZ-Plane from center when orbiting.
-    distance: 4,
+    distance: 3,
   };
 
   function start() {
@@ -149,12 +148,13 @@ const app = ((() => {
 
   function initModels() {
     // fillstyle
-    const fillWireframe = 'fillwireframe';
-    const wireframe = 'wireframe';
-    createModel(plane, wireframe, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
-    createModel(torus, wireframe, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
-    createModel(coneLeft, wireframe, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
-    createModel(coneRight, wireframe, [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
+    createModel(torus, 'fill', [1, 1, 1, 1], [0, 0, 0], [Math.PI / 2, 0, 0], [1, 1, 1]);
+    createModel(torus, 'fill', [1, 1, 1, 1], [0, 0, 0], [0, 0, Math.PI / 2], [1, 1, 1]);
+    createModel(cone, 'fill', [1, 1, 1, 1], [-1.6, 0, 0], [0, Math.PI / 2, 0], [1, 1, 1]);
+    createModel(cone, 'fill', [1, 1, 1, 1], [1.6, 0, 0], [0, -Math.PI / 2, 0], [1, 1, 1]);
+    createModel(cone, 'fill', [1, 1, 1, 1], [0, -1.6, 0], [-Math.PI / 2, 0, 0], [1, 1, 1]);
+    createModel(cone, 'fill', [1, 1, 1, 1], [0, 1.6, 0], [Math.PI / 2, 0, 0], [1, 1, 1]);
+    createModel(torusInner, 'fill', [1, 1, 1, 1], [0, 0, 0], [0, 0, 0], [1, 1, 1]);
   }
 
   /**
@@ -254,7 +254,7 @@ const app = ((() => {
       if (c === 'h') { // Move camera up and down.
         camera.eye[1] += sign * deltaTranslate;
       }
-      if (c === 'd') { // Camera distance to center.
+      if (c === 'o') { // Camera distance to center.
         camera.distance += sign * deltaTranslate;
       }
       if (c === 'v') { // Camera fovy in radian.
@@ -273,16 +273,39 @@ const app = ((() => {
       }
 
       if (c === 'w') {
-        camera.yAngle += deltaRotate;
+        moveCameraVertically(true);
       }
 
       if (c === 's') {
-        camera.yAngle -= deltaRotate;
+        moveCameraVertically(false);
       }
 
       // Render the scene again on any key pressed.
       render();
     };
+  }
+
+  function moveCameraVertically(upwards) {
+    const direction = upwards ? 1 : -1;
+    const targetRotation = Math.abs(camera.yAngle + deltaRotate * direction);
+    const rotation90 = Math.PI / 2;
+    const rotation360 = 2 * Math.PI;
+    const rotation270 = rotation360 - rotation90;
+
+    // eslint-disable-next-line max-len
+    if (targetRotation <= rotation90 || (targetRotation > rotation270 && targetRotation < rotation360)) {
+      camera.up = [0, 1, 0];
+      camera.yAngle += deltaRotate * direction;
+      return;
+    }
+
+    if (targetRotation > rotation90 && targetRotation < rotation270) {
+      camera.up = [0, -1, 0];
+      camera.yAngle += deltaRotate * direction;
+      return;
+    }
+
+    camera.yAngle = 0;
   }
 
   /**
@@ -402,11 +425,11 @@ const app = ((() => {
     // Setup rendering lines.
     const wireframe = (model.fillstyle.search(/wireframe/) !== -1);
     if (wireframe) {
+      gl.uniform4fv(prog.colorUniform, [0, 0, 0, 1]);
       gl.disableVertexAttribArray(prog.normalAttrib);
       gl.vertexAttrib3f(prog.normalAttrib, 0, 0, 0);
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.iboLines);
-      gl.drawElements(gl.LINES, model.iboLines.numberOfElements,
-        gl.UNSIGNED_SHORT, 0);
+      gl.drawElements(gl.LINES, model.iboLines.numberOfElements, gl.UNSIGNED_SHORT, 0);
     }
   }
 

@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars,import/prefer-default-export
-export const plane = ((() => {
+export const cone = ((() => {
   function createVertexData() {
-    const n = 100;
-    const m = 100;
+    const n = 16;
+    const m = 16;
 
     // Positions.
     this.vertices = new Float32Array(3 * (n + 1) * (m + 1));
@@ -16,8 +16,8 @@ export const plane = ((() => {
     this.indicesTris = new Uint16Array(3 * 2 * n * m);
     const { indicesTris } = this;
 
-    const rangeU = { min: -10, max: 10 };
-    const rangeV = { min: -10, max: 10 };
+    const rangeU = { min: -Math.PI, max: Math.PI };
+    const rangeV = { min: 0, max: 1 };
 
     const du = (rangeU.max - rangeU.min) / n;
     const dv = (rangeV.max - rangeV.min) / m;
@@ -26,13 +26,12 @@ export const plane = ((() => {
     let iLines = 0;
     let iTris = 0;
 
-    // Loop angle u.
     for (let u = rangeU.min, i = 0; i <= n; i++, u += du) {
       for (let v = rangeV.min, j = 0; j <= m; j++, v += dv) {
         const iVertex = i * (m + 1) + j;
 
-        const x = u;
-        const y = 0;
+        const x = -v * Math.cos(u) * 0.2;
+        const y = v * Math.sin(u) * 0.2;
         const z = v;
 
         // Set vertex positions.
@@ -41,9 +40,12 @@ export const plane = ((() => {
         vertices[iVertex * 3 + 2] = z;
 
         // Calc and set normals.
-        normals[iVertex * 3] = 0;
-        normals[iVertex * 3 + 1] = 1;
-        normals[iVertex * 3 + 2] = 0;
+        const nx = Math.cos(u) * Math.cos(v);
+        const ny = Math.cos(u) * Math.sin(v);
+        const nz = Math.sin(u);
+        normals[iVertex * 3] = nx;
+        normals[iVertex * 3 + 1] = ny;
+        normals[iVertex * 3 + 2] = nz;
 
         // Set index.
         // Line on beam.

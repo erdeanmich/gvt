@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars,import/prefer-default-export
-export const coneRight = ((() => {
+export const torusInner = ((() => {
   function createVertexData() {
     const n = 16;
-    const m = 16;
+    const m = 32;
 
     // Positions.
     this.vertices = new Float32Array(3 * (n + 1) * (m + 1));
@@ -16,12 +16,14 @@ export const coneRight = ((() => {
     this.indicesTris = new Uint16Array(3 * 2 * n * m);
     const { indicesTris } = this;
 
-    const rangeU = { min: -Math.PI, max: Math.PI };
-    const rangeV = { min: 0, max: 1 };
+    const rangeU = { min: 0, max: (Math.PI * 2) };
+    const rangeV = { min: 0, max: (Math.PI * 2) };
 
     const du = (rangeU.max - rangeU.min) / n;
     const dv = (rangeV.max - rangeV.min) / m;
 
+    const r = 0.3;
+    const R = 0.5;
     // Counter for entries in index array.
     let iLines = 0;
     let iTris = 0;
@@ -30,13 +32,13 @@ export const coneRight = ((() => {
       for (let v = rangeV.min, j = 0; j <= m; j++, v += dv) {
         const iVertex = i * (m + 1) + j;
 
-        const z = -v * Math.cos(u) * 0.3;
-        const y = v * Math.sin(u) * 0.3;
-        const x = -v;
+        const x = (R + r * Math.cos(u)) * Math.cos(v);
+        const y = (R + r * Math.cos(u)) * Math.sin(v);
+        const z = r * Math.sin(u);
 
         // Set vertex positions.
-        vertices[iVertex * 3] = x + 1.6;
-        vertices[iVertex * 3 + 1] = y + 0.8;
+        vertices[iVertex * 3] = x;
+        vertices[iVertex * 3 + 1] = y;
         vertices[iVertex * 3 + 2] = z;
 
         // Calc and set normals.
