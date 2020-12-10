@@ -125,6 +125,14 @@
                     color = vColor * 0.8;
 	            }
 
+	            if(dot(vNormal, lightDirection) > 0.2) {
+                    color = vColor * 0.6;
+	            }
+
+	            if(dot(vNormal, lightDirection) > 0.4) {
+                    color = vColor * 0.4;
+	            }
+
 	            gl_FragColor = color;
             }
         </script>
