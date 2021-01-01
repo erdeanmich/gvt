@@ -1,0 +1,83 @@
+.slide-container {
+    width: 100%; /* Width of the outside container */
+    margin-bottom: 1em;
+}
+
+.slider, .slider-disabled {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+#healthyPatients::-moz-range-thumb {
+    background: #4CAF50;
+}
+
+#sickPatients::-moz-range-thumb {
+    background: #ff0000;
+}
+
+#healthyPatients::-webkit-slider-thumb {
+    background: #4CAF50;
+}
+
+#sickPatients::-webkit-slider-thumb {
+    background: red;
+}
+
+#immunePatients::-moz-range-thumb {
+    background: red;
+}
+
+#immunePatients::-webkit-slider-thumb {
+    background: blue;
+}
+
+#timeSteps::-moz-range-thumb, #probability::-moz-range-thumb {
+    background: #87cefa;
+}
+
+#probability::-webkit-slider-thumb, #timeSteps::-webkit-slider-thumb, #speed::-webkit-slider-thumb {
+    background: lightskyblue;
+}
+
+.slider-disabled::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #757575 !important;
+}
+
+.slider-disabled::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #757575;
+}
+

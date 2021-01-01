@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link rel="stylesheet" href="ccc.css"/>
+        <link rel="stylesheet" href="slider.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+        <script src="../common/ext/index.js" type="module"></script>
+        <script src="slider.js" defer></script>
+        <script src="chart.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="plane.js" type="module"></script>
+        <script src="sphere.js" type="module"></script>
+        <script src="Patient.js" type="module"></script>
+        <script src="ccc.js" type="module"></script>
+
+        <script type="x-shader/x-vertex" id="vertexshader">
+            attribute vec3 aPosition;
+            attribute vec3 aNormal;
+            uniform mat4 uPMatrix;
+            uniform mat4 uMVMatrix;
+            uniform vec4 uColor;
+            uniform mat3 uNMatrix;
+            varying vec4 vColor;
+
+            void main(){
+                gl_Position = uPMatrix * uMVMatrix * vec4(aPosition, 1.0);
+                vec3 tNormal = uNMatrix * aNormal;
+                vColor = vec4(tNormal.z, tNormal.z, tNormal.z, 1.0);
+                vColor = uColor * (vColor + 1.0) / 2.0;
+            }
+
+
+        </script>
+
+        <script type="x-shader/x-fragment" id="fragmentshader">
+            precision mediump float;
+            varying vec4 vColor;
+
+            void main() {
+            gl_FragColor = vColor;
+            }
+
+        </script>
+
+        <title>Corona Christmas Challenge</title>
+    </head>
+    <body>
+        <header>
+            Corona Christmas Challenge
+        </header>
+        <main>
+            <div id="simulation">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div id="controls">
+                <h2>Start controls</h2>
+                <div class="slide-container" >
+                    <span>N Total Patients</span>
+                    <input disabled type="range" min="0" max="60" value="5" class="slider-disabled" id="totalPatients">
+                    <span id="totalPatients-value">5</span>
+                </div>
+                <div class="slide-container" >
+                    <span>G Healthy Patients</span>
+                    <input type="range" min="0" max="20" value="0" class="slider" id="healthyPatients">
+                    <span id="healthyPatients-value">0</span>
+                </div>
+                <div class="slide-container" >
+                    <span>G Sick Patients</span>
+                    <input type="range" min="0" max="20" value="5" class="slider" id="sickPatients">
+                    <span id="sickPatients-value">0</span>
+                </div>
+                <div>
+                    <span>With immune state</span>
+                    <input type="checkbox" id="immunity">
+                </div>
+                <div class="slide-container">
+                    <span>I Immune Patients</span>
+                    <input disabled type="range" min="0" max="20" value="0" class="slider-disabled" id="immunePatients">
+                    <span id="immunePatients-value">0</span>
+                </div>
+                <div class="slide-container" >
+                    <span>Timesteps until healing</span>
+                    <input type="range" min="1" max="100" value="100" class="slider" id="timeSteps">
+                    <span id="timeSteps-value">100</span>
+                </div>
+                <div class="slide-container" >
+                    <span>Infection probability</span>
+                    <input type="range" min="0.1" max="1" value="0.1" step="0.1" class="slider" id="probability">
+                    <span id="probability-value">1</span>
+                </div>
+
+                <h2>Runtime controls</h2>
+                <div id="buttons">
+                    <button id="play">Play</button>
+                    <button id="stop">Stop</button>
+                </div>
+                <div class="slide-container" >
+                    <span>Simulation speed</span>
+                    <input type="range" min="-2" max="2" value="0" step="1" class="slider" id="speed">
+                    <span id="speed-value">Normal</span>
+                </div>
+                <div id="chart">
+                    <canvas id="patientChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
