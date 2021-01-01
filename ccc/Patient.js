@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 
-import { vec3 } from '../common/ext';
+import { vec3 } from '../common/ext/index.js';
 
 export class Patient {
   constructor(startPosition, direction, state, id) {
